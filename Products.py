@@ -1,6 +1,6 @@
 import pandas as pd
 import pymssql
-from SQL_Connection import Connect_to_SQL_Server
+from SQL_Connection import Connect_to_SQL_Server_Pymssql
 
 
 def sort_by_category(e):
@@ -11,7 +11,6 @@ def create_list_of_categories(product_sales_table):
     category_list = []
     for temp_dict in product_sales_table:
         category_list.append(temp_dict['Category'])  # הכנסה לרשימה את הקטגוריות
-
     category_list = sorted(set(category_list))  # הורדת כפילויות של קטגוריות
     return category_list
 
@@ -79,9 +78,7 @@ def product_sales():
     הפונצקיה יוצרת חיבור עם מסד הנתונים ויוצרת רשימה של מילונים מערך המוחזר מפרוצדורה להצגת כל המכירות
     :return:result_rows :   רשימה של מילונים
     """
-    conn = pymssql.connect(server='sql5108.site4now.net',
-                           user='db_a79b5b_proj13_admin', password='XXNEA6q6VbvATG6g', database='db_a79b5b_proj13')
-    cursor = conn.cursor(as_dict=True)
+    cursor = Connect_to_SQL_Server_Pymssql()
 
     cursor.callproc('SumPerProduct')
     result_rows = [row for row in cursor]
