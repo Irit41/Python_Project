@@ -17,11 +17,7 @@ def incomes_vs_expenses_graph():
     print_df(df)
     df['Incomes'] = pd.to_numeric(df['Incomes'])
     df['Expenses'] = pd.to_numeric(df['Expenses'])
-    # print(df.dtypes)
-    # plot the dataframe
     df.plot(x="Sections", y=["Incomes", "Expenses"], kind="bar", figsize=(9, 8))
-    #
-    #  print bar graph
     mp.show()
 
 
